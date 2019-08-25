@@ -46,9 +46,9 @@ public class Engine
 		
 		float[] v_quad =
 			{
-				//верхний треугольник
+				//РІРµСЂС…РЅРёР№ С‚СЂРµСѓРіРѕР»СЊРЅРёРє
 				0.5f, 0.5f, 0,  -0.5f, 0.5f, 0,  -0.5f, -0.5f, 0,
-				//нижний треугольник
+				//РЅРёР¶РЅРёР№ С‚СЂРµСѓРіРѕР»СЊРЅРёРє
 				0.5f, 0.5f, 0,  -0.5f, -0.5f, 0,  0.5f, -0.5f, 0
 			};
 		
@@ -58,20 +58,20 @@ public class Engine
 				0.5f, 0.0f, 0f,  -0.5f, 0.0f, 0f,  0.0f, -0.5f, 0f
 			};
 		
-		//генерируем Vertex Array и связываем его
+		//РіРµРЅРµСЂРёСЂСѓРµРј Vertex Array Рё СЃРІСЏР·С‹РІР°РµРј РµРіРѕ
 		int vaoId = GL30.glGenVertexArrays();
 		GL30.glBindVertexArray(vaoId);
-		//генерируем Vertex Buffer и связываем его
+		//РіРµРЅРµСЂРёСЂСѓРµРј Vertex Buffer Рё СЃРІСЏР·С‹РІР°РµРј РµРіРѕ
 		int vboId = GL30.glGenBuffers();
 		GL30.glBindBuffer(GL30.GL_ARRAY_BUFFER, vboId);
-		//создаём float буффер и засовываем туда v_quad позиции треугольника
+		//СЃРѕР·РґР°С‘Рј float Р±СѓС„С„РµСЂ Рё Р·Р°СЃРѕРІС‹РІР°РµРј С‚СѓРґР° v_quad РїРѕР·РёС†РёРё С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°
 		FloatBuffer fBuffer = this.storeDataInFloatBuffer(v_quad);
 		GL30.glBufferData(GL30.GL_ARRAY_BUFFER, fBuffer, GL30.GL_STATIC_DRAW);
 		MemoryUtil.memFree(fBuffer);
-		//создаём атрибут для вершины, указывая id, тип данных.
+		//СЃРѕР·РґР°С‘Рј Р°С‚СЂРёР±СѓС‚ РґР»СЏ РІРµСЂС€РёРЅС‹, СѓРєР°Р·С‹РІР°СЏ id, С‚РёРї РґР°РЅРЅС‹С….
 		GL30.glVertexAttribPointer(0, 3, GL11.GL_FLOAT, false, 0, 0);
 		
-		//развязываем Vbo's и сам лист Vao
+		//СЂР°Р·РІСЏР·С‹РІР°РµРј Vbo's Рё СЃР°Рј Р»РёСЃС‚ Vao
 		GL30.glBindBuffer(GL30.GL_ARRAY_BUFFER, vboId);
 		GL30.glBindVertexArray(vaoId);
 	
@@ -80,17 +80,17 @@ public class Engine
 			Keyboard.handleKeyboardInput();
 			Mouse.handleMouseInput();
 			
-			//подготавливает экран для рендеринга, очищаем цвет с предыдущего фрейма и очищакм
-			//буффер пикселей / цвета.
+			//РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµС‚ СЌРєСЂР°РЅ РґР»СЏ СЂРµРЅРґРµСЂРёРЅРіР°, РѕС‡РёС‰Р°РµРј С†РІРµС‚ СЃ РїСЂРµРґС‹РґСѓС‰РµРіРѕ С„СЂРµР№РјР° Рё РѕС‡РёС‰Р°РєРј
+			//Р±СѓС„С„РµСЂ РїРёРєСЃРµР»РµР№ / С†РІРµС‚Р°.
 			GL11.glClearColor(0, 1, 1, 1);
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 			
 			GL30.glBindVertexArray(vaoId);
-			//включаем создынный выше 0 атрибут вершины
+			//РІРєР»СЋС‡Р°РµРј СЃРѕР·РґС‹РЅРЅС‹Р№ РІС‹С€Рµ 0 Р°С‚СЂРёР±СѓС‚ РІРµСЂС€РёРЅС‹
 			GL30.glEnableVertexAttribArray(0);
-			//рисуем модель используя треугольники.
+			//СЂРёСЃСѓРµРј РјРѕРґРµР»СЊ РёСЃРїРѕР»СЊР·СѓСЏ С‚СЂРµСѓРіРѕР»СЊРЅРёРєРё.
 			GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, v_quad.length / 3);
-			//выключаем создынный выше 0 атрибут вершины
+			//РІС‹РєР»СЋС‡Р°РµРј СЃРѕР·РґС‹РЅРЅС‹Р№ РІС‹С€Рµ 0 Р°С‚СЂРёР±СѓС‚ РІРµСЂС€РёРЅС‹
 			GL30.glDisableVertexAttribArray(0);
 			GL30.glBindVertexArray(vaoId);
 
