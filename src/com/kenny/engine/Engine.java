@@ -80,17 +80,17 @@ public class Engine
 			Keyboard.handleKeyboardInput();
 			Mouse.handleMouseInput();
 			
-			//подготавливает экран для рендеринга, очищаем цвет с предыдущего фрейма и очищакм
+			//подготавливает экран для рендеринга, очищаем цвет с предыдущего фрейма и очищаем
 			//буффер пикселей / цвета.
 			GL11.glClearColor(0, 1, 1, 1);
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 			
 			GL30.glBindVertexArray(vaoId);
-			//включаем создынный выше 0 атрибут вершины
+			//включаем созданный выше 0 атрибут вершины
 			GL30.glEnableVertexAttribArray(0);
 			//рисуем модель используя треугольники.
 			GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, v_quad.length / 3);
-			//выключаем создынный выше 0 атрибут вершины
+			//выключаем созданный выше 0 атрибут вершины
 			GL30.glDisableVertexAttribArray(0);
 			GL30.glBindVertexArray(vaoId);
 
